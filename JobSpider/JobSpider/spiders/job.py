@@ -22,6 +22,7 @@ class JobSpider(Spider):
         if next_url:
             # yield Request(url=parse.urljoin(response.url, post_url), callback=self.parse)
             yield Request(url=next_url, callback=self.parse)
+            yield Request(url=next_url, callback=self.parse, dont_filter=True)
 
     def parse_detail(self, response):
         item = JobSpiderItem()
