@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Scrapy settings for Jobspider project
 #
 # For simplicity, this file contains only settings considered important or
@@ -10,7 +9,6 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = 'Jobspider'
-
 SPIDER_MODULES = ['Jobspider.spiders']
 NEWSPIDER_MODULE = 'Jobspider.spiders'
 DEFAULT_REQUEST_HEADERS = {
@@ -19,11 +17,28 @@ DEFAULT_REQUEST_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
 
 }
-ROBOTSTXT_OBEY = False
+# Obey robots.txt rules
+ROBOTSTXT_OBEY = True
 CONCURRENT_REQUESTS = 40
 DOWNLOAD_DELAY = 0.5
 CONCURRENT_REQUESTS_PER_DOMAIN =16
 CONCURRENT_REQUESTS_PER_IP = 16
+DOWNLOAD_TIMEOUT=10
+DNSCACHE_ENABLED=True
 ITEM_PIPELINES = {
-    'Jobspider.pipelines.JobspiderPipeline': 300,
+    #'Jobspider.pipelines.JobspiderPipeline': 300,
+    #'scrapy_redis.pipelines.RedisPipeline': 301
 }
+DOWNLOADER_MIDDLEWARES = {
+    'Jobspider.timeout_middleware.Timeout_Middleware':610,
+    'Jobspider.useragent.RotateUserAgentMiddleware':400
+}
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+#REDIS_URL = 'redis://localhost:6379'
+#redis数据库连接的格式
+#MONGO_URI = 'localhost'
+#MONGO_DATABASE = 'job'
