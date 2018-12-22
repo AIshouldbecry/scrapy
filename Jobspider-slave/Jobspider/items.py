@@ -13,13 +13,15 @@ class JobspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     job_name = scrapy.Field()
-    job_id = scrapy.Field()
     job_link = scrapy.Field()
     job_info = scrapy.Field()
     job_tags = scrapy.Field()
     company = scrapy.Field()
     address = scrapy.Field()
     salary = scrapy.Field()
+    crawl_time = scrapy.Field()
+    experience_year = scrapy.Field()
+    education_need = scrapy.Field()
 
 class JobItemLoader(ItemLoader):
     default_output_processor = TakeFirst()

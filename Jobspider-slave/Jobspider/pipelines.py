@@ -9,8 +9,8 @@ import pymongo
 
 class JobspiderPipeline(object):
     def __init__(self):
-        self.client = pymongo.MongoClient("localhost",connect=False)
-        db = self.client["job_Jobspider_r"]
+        self.client = pymongo.MongoClient("154.8.168.28",27017)
+        db = self.client["job_Jobspider_r_1"]
         self.collection = db["python"]
 
     def process_item(self, item, spider):

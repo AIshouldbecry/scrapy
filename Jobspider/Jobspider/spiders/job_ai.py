@@ -5,10 +5,10 @@ from bs4 import BeautifulSoup
 from scrapy.http import Request
 from Jobspider.utils.InsertRedis import inserintotc, inserintota
 
-class Job_pythonspider(scrapy.Spider):
-    name = 'job_python'
+class Job_aispider(scrapy.Spider):
+    name = 'job_ai'
     # start_urls = ['https://m.zhaopin.com/hangzhou/']
-    start_urls = ['https://m.zhaopin.com/beijing-530/?keyword=python&pageindex=1&maprange=3&islocation=0']
+    start_urls = ['https://m.zhaopin.com/beijing-530/?keyword=ai&pageindex=1&maprange=3&islocation=0']
     base_url  = 'https://m.zhaopin.com'
 
     def parse(self, response):
